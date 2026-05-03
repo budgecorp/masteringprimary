@@ -6,7 +6,11 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+const posts = (
+	await getCollection('blog', ({ data }) =>
+		import.meta.env.PROD ? !data.draft : true,
+	)
+).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 const recent = posts.slice(0, 10);
