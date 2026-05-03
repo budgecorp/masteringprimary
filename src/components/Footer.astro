@@ -1,0 +1,46 @@
+---
+const today = new Date();
+---
+
+<footer>
+	<div class="links">
+		<a href="/rss.xml">RSS</a>
+		<a href="/subscribe">Subscribe</a>
+	</div>
+	<div class="copy">© {today.getFullYear()} Mastering Primary</div>
+</footer>
+
+<style>
+	footer {
+		width: 640px;
+		max-width: calc(100% - 2em);
+		margin: 0 auto;
+		padding: 2rem 1rem 3rem;
+		border-top: 1px solid var(--rule);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+		font-size: 0.875rem;
+		color: var(--ink-muted);
+	}
+	.links {
+		display: flex;
+		gap: 1.25rem;
+	}
+	.links a {
+		color: var(--ink-muted);
+		text-decoration: none;
+	}
+	.links a:hover {
+		color: var(--ink);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	@media (max-width: 480px) {
+		footer {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>

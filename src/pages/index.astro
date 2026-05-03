@@ -1,0 +1,115 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const recent = posts.slice(0, 10);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="intro">
+				<p>
+					Mastering Primary is a record of one person's attempt to develop the
+					capabilities most of us assume we'll have figured out by middle age and
+					rarely do — shipping work, staying healthy, building prosperity,
+					mastering the self.
+				</p>
+				<p>
+					The name is borrowed from the Ashtanga primary series. After three
+					decades of on-and-off practice, I've never finished it. That feels
+					like the right metaphor.
+				</p>
+			</section>
+
+			<section class="posts">
+				<h2>Recent</h2>
+				{
+					recent.length === 0 ? (
+						<p class="empty">Nothing published yet.</p>
+					) : (
+						<ul>
+							{recent.map((post) => (
+								<li>
+									<a href={`/blog/${post.id}/`}>
+										<span class="post-title">{post.data.title}</span>
+										<span class="post-date">
+											<FormattedDate date={post.data.pubDate} />
+										</span>
+									</a>
+								</li>
+							))}
+						</ul>
+					)
+				}
+			</section>
+		</main>
+		<Footer />
+
+		<style>
+			.intro {
+				margin-bottom: 3rem;
+			}
+			.intro p:last-child {
+				margin-bottom: 0;
+			}
+			.posts h2 {
+				font-size: 0.875rem;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--ink-muted);
+				margin: 0 0 1rem;
+			}
+			.posts ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.posts li {
+				margin: 0;
+				border-top: 1px solid var(--rule);
+			}
+			.posts li:last-child {
+				border-bottom: 1px solid var(--rule);
+			}
+			.posts a {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				gap: 1rem;
+				padding: 0.875rem 0;
+				text-decoration: none;
+				color: var(--ink);
+			}
+			.post-title {
+				flex: 1;
+			}
+			.post-date {
+				font-size: 0.85rem;
+				color: var(--ink-muted);
+				white-space: nowrap;
+			}
+			.posts a:hover .post-title {
+				text-decoration: underline;
+				text-underline-offset: 3px;
+			}
+			.empty {
+				color: var(--ink-muted);
+				font-style: italic;
+			}
+		</style>
+	</body>
+</html>

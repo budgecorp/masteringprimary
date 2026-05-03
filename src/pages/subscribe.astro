@@ -1,0 +1,99 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+// TODO: replace with the form action URL Buttondown gives you once the
+// account exists, e.g. https://buttondown.email/api/emails/embed-subscribe/<username>
+const BUTTONDOWN_USERNAME = ''; // e.g. 'masteringprimary'
+const formAction = BUTTONDOWN_USERNAME
+	? `https://buttondown.email/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`
+	: '';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Subscribe · ${SITE_TITLE}`}
+			description="New posts by email."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Subscribe</h1>
+
+			<p>
+				New posts arrive by email when they're written. No tracking pixels, no
+				schedule, no marketing. You can unsubscribe in one click.
+			</p>
+
+			{
+				formAction ? (
+					<form action={formAction} method="post" class="subscribe-form" target="popupwindow">
+						<label for="bd-email" class="sr-only">
+							Email
+						</label>
+						<input
+							id="bd-email"
+							type="email"
+							name="email"
+							placeholder="you@example.com"
+							required
+						/>
+						<button type="submit">Subscribe</button>
+					</form>
+				) : (
+					<p class="placeholder">
+						Subscriptions aren't wired up yet. The
+						<a href="/rss.xml">RSS feed</a> works in the meantime.
+					</p>
+				)
+			}
+		</main>
+		<Footer />
+
+		<style>
+			.subscribe-form {
+				display: flex;
+				gap: 0.5rem;
+				margin: 1.5rem 0;
+				flex-wrap: wrap;
+			}
+			.subscribe-form input {
+				flex: 1;
+				min-width: 200px;
+				padding: 0.625rem 0.75rem;
+				font-family: var(--serif);
+				font-size: 1rem;
+				border: 1px solid var(--rule);
+				border-radius: 3px;
+				background: var(--bg);
+				color: var(--ink);
+			}
+			.subscribe-form input:focus {
+				outline: 2px solid var(--ink);
+				outline-offset: -1px;
+			}
+			.subscribe-form button {
+				padding: 0.625rem 1rem;
+				font-family: var(--serif);
+				font-size: 1rem;
+				background: var(--ink);
+				color: var(--bg);
+				border: 1px solid var(--ink);
+				border-radius: 3px;
+				cursor: pointer;
+			}
+			.subscribe-form button:hover {
+				background: #000;
+			}
+			.placeholder {
+				color: var(--ink-muted);
+				font-style: italic;
+			}
+		</style>
+	</body>
+</html>

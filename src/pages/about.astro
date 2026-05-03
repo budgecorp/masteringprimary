@@ -1,0 +1,75 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`About · ${SITE_TITLE}`} description="What this is." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>About this Mastering Primary</h1>
+
+			<p>
+				I have been practicing Ashtanga Yoga off and on for 25 years. I
+				practiced every day for a year. I practiced regularly for a couple of
+				years in a row. I practiced in India with Pattabhi Jois (the originator
+				of Ashtanga yoga), and later with Sharath (his grandson). I even lived
+				in a yoga ashram for an extended period of time. I have still never
+				managed to develop a credible Primary Series. As implied by the name,
+				the Primary Series is the starting point for an Ashtanga practice. In
+				any reasonable assessment, this is an astounding failure. It is also a
+				failure that influences many areas of my life.
+			</p>
+
+			<p>
+				Your equivalent could be the book you haven't written, the business you
+				haven't started, the relationship you haven't developed, the equity you
+				haven't accumulated. It is the intention you live with but persistently
+				don't fulfill.
+			</p>
+
+			<p>
+				Yoga helpfully provides a guidebook to meet our intentions. I expect
+				the guidebook is broadly applicable to any complex personal endeavour.
+			</p>
+
+			<p>
+				This site follows my journey using this guidebook to dig myself out of
+				a hole, to develop a life of meaning, to find meaning in the life I am
+				living. Through this journey I intend to develop the baseline skills
+				required to live a rewarding life and I intend to also find the thrill
+				and ecstasy of living closer to god.
+			</p>
+
+			<p>Along the way I will also develop a graceful Primary Series.</p>
+
+			<p class="meta">
+				No comments. <a href="/rss.xml">RSS</a> and
+				<a href="/subscribe">email</a> if you want to follow along.
+			</p>
+		</main>
+		<Footer />
+
+		<style>
+			.meta {
+				margin-top: 3rem;
+				padding-top: 1.5rem;
+				border-top: 1px solid var(--rule);
+				font-size: 0.95rem;
+				color: var(--ink-muted);
+			}
+			.meta a {
+				color: var(--ink-muted);
+			}
+			.meta a:hover {
+				color: var(--ink);
+			}
+		</style>
+	</body>
+</html>
