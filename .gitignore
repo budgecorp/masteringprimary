@@ -23,3 +23,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
+
+# Obsidian vault metadata (when blog folder is opened as a vault)
+.obsidian/
