@@ -3,20 +3,38 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog', ({ data }) =>
-		import.meta.env.PROD ? !data.draft : true,
-	);
-	return posts.map((post) => ({
+	const posts = (
+		await getCollection('blog', ({ data }) =>
+			import.meta.env.PROD ? !data.draft : true,
+		)
+	).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+	return posts.map((post, index) => ({
 		params: { slug: post.id },
-		props: post,
+		props: {
+			post,
+			// Note: posts are sorted newest-first, so "newer" is the previous
+			// index and "older" is the next index. We expose them as
+			// previousPost (older, what readers go to next when going back in
+			// time) and nextPost (newer) — but in UI terms, "Previous post"
+			// usually means "the post written before this one" (older), so
+			// that's what we'll label.
+			olderPost: posts[index + 1] ?? null,
+			newerPost: posts[index - 1] ?? null,
+		},
 	}));
 }
-type Props = CollectionEntry<'blog'>;
 
-const post = Astro.props;
+type Props = {
+	post: CollectionEntry<'blog'>;
+	olderPost: CollectionEntry<'blog'> | null;
+	newerPost: CollectionEntry<'blog'> | null;
+};
+
+const { post, olderPost, newerPost } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} olderPost={olderPost} newerPost={newerPost}>
 	<Content />
 </BlogPost>

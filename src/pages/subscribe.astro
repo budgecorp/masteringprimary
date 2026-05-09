@@ -25,14 +25,26 @@ const formAction = BUTTONDOWN_USERNAME
 		<main>
 			<h1>Subscribe</h1>
 
-			<p>
-				New posts arrive by email when they're written. No tracking pixels, no
-				schedule, no marketing. You can unsubscribe in one click.
+			<p class="lead">
+				A post arrives by email when there's one to share — no schedule, no
+				newsletter cadence, no growth-hacking. The full post in your inbox.
 			</p>
+
+			<ul class="promises">
+				<li>No tracking pixels.</li>
+				<li>No third-party analytics.</li>
+				<li>One click unsubscribes you, immediately.</li>
+				<li>Your email is stored at <a href="https://buttondown.com" target="_blank" rel="noreferrer">Buttondown</a>, never sold or shared.</li>
+			</ul>
 
 			{
 				formAction ? (
-					<form action={formAction} method="post" class="subscribe-form" target="popupwindow">
+					<form
+						action={formAction}
+						method="post"
+						class="subscribe-form"
+						target="popupwindow"
+					>
 						<label for="bd-email" class="sr-only">
 							Email
 						</label>
@@ -56,6 +68,27 @@ const formAction = BUTTONDOWN_USERNAME
 		<Footer />
 
 		<style>
+			.lead {
+				font-size: 1.1rem;
+				line-height: 1.6;
+			}
+			.promises {
+				list-style: none;
+				padding: 0;
+				margin: 1.5rem 0 2rem;
+				color: var(--ink-muted);
+				font-size: 0.95rem;
+			}
+			.promises li {
+				padding: 0.25rem 0 0.25rem 1.25rem;
+				position: relative;
+			}
+			.promises li::before {
+				content: '·';
+				position: absolute;
+				left: 0.25rem;
+				color: var(--ink-muted);
+			}
 			.subscribe-form {
 				display: flex;
 				gap: 0.5rem;
@@ -73,7 +106,7 @@ const formAction = BUTTONDOWN_USERNAME
 				background: var(--bg);
 				color: var(--ink);
 			}
-			.subscribe-form input:focus {
+			.subscribe-form input:focus-visible {
 				outline: 2px solid var(--ink);
 				outline-offset: -1px;
 			}

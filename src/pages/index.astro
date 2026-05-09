@@ -25,13 +25,13 @@ const recent = posts.slice(0, 10);
 		<Header />
 		<main>
 			<section class="intro">
-				<p>
+				<p class="lead">
 					Mastering Primary is a record of one person's attempt to develop the
-					capabilities most of us assume we'll have figured out by middle age and
-					rarely do — shipping work, staying healthy, building prosperity,
+					capabilities most of us assume we'll have figured out by middle age
+					and rarely do — shipping work, staying healthy, building prosperity,
 					mastering the self.
 				</p>
-				<p>
+				<p class="lead-secondary">
 					The name is borrowed from the Ashtanga primary series. After three
 					decades of on-and-off practice, I've never finished it. That feels
 					like the right metaphor.
@@ -64,16 +64,26 @@ const recent = posts.slice(0, 10);
 
 		<style>
 			.intro {
-				margin-bottom: 3rem;
+				margin-bottom: 3.5rem;
+				padding-bottom: 2rem;
+				border-bottom: 1px solid var(--rule);
 			}
-			.intro p:last-child {
+			.lead {
+				font-size: 1.15rem;
+				line-height: 1.55;
+				margin-bottom: 1rem;
+			}
+			.lead-secondary {
+				font-size: 1rem;
+				line-height: 1.65;
+				color: var(--ink-muted);
 				margin-bottom: 0;
 			}
 			.posts h2 {
-				font-size: 0.875rem;
+				font-size: 0.8rem;
 				font-weight: 600;
 				text-transform: uppercase;
-				letter-spacing: 0.08em;
+				letter-spacing: 0.1em;
 				color: var(--ink-muted);
 				margin: 0 0 1rem;
 			}

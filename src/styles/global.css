@@ -33,7 +33,7 @@ body {
 }
 
 main {
-	width: 640px;
+	width: 600px;
 	max-width: calc(100% - 2em);
 	margin: 0 auto;
 	padding: 3rem 1rem 2rem;
@@ -71,10 +71,18 @@ a {
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
 	text-underline-offset: 3px;
+	text-decoration-skip-ink: auto;
 }
 
 a:hover {
 	text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+	outline: 2px solid var(--ink);
+	outline-offset: 3px;
+	text-decoration: none;
+	border-radius: 2px;
 }
 
 strong,
@@ -132,12 +140,65 @@ li {
 	margin: 0.25em 0;
 }
 
+input,
+button,
+textarea {
+	font-family: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+	outline: 2px solid var(--ink);
+	outline-offset: 2px;
+}
+
 @media (max-width: 720px) {
 	body {
 		font-size: 17px;
 	}
 	main {
 		padding: 2rem 1rem 1.5rem;
+	}
+}
+
+@media print {
+	header,
+	footer,
+	nav,
+	.no-print {
+		display: none !important;
+	}
+	body {
+		font-size: 11pt;
+		color: #000;
+		background: #fff;
+	}
+	main {
+		width: auto;
+		max-width: none;
+		padding: 0;
+		margin: 0;
+	}
+	a {
+		color: #000;
+		text-decoration: none;
+	}
+	a[href^='http']::after {
+		content: ' (' attr(href) ')';
+		font-size: 0.85em;
+		color: #555;
+	}
+	h1,
+	h2,
+	h3 {
+		page-break-after: avoid;
+	}
+	p,
+	blockquote,
+	li {
+		orphans: 3;
+		widows: 3;
 	}
 }
 

@@ -5,9 +5,19 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & {
+	olderPost?: CollectionEntry<'blog'> | null;
+	newerPost?: CollectionEntry<'blog'> | null;
+};
 
-const { title, description, pubDate, updatedDate } = Astro.props;
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	olderPost,
+	newerPost,
+} = Astro.props;
 ---
 
 <html lang="en">
@@ -35,6 +45,33 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 					<slot />
 				</div>
 			</article>
+
+			{
+				(olderPost || newerPost) && (
+					<nav class="post-nav no-print" aria-label="Other posts">
+						<div class="post-nav-cell">
+							{newerPost && (
+								<a href={`/blog/${newerPost.id}/`} class="post-nav-link">
+									<span class="post-nav-label">Newer ←</span>
+									<span class="post-nav-title">
+										{newerPost.data.title}
+									</span>
+								</a>
+							)}
+						</div>
+						<div class="post-nav-cell post-nav-cell-right">
+							{olderPost && (
+								<a href={`/blog/${olderPost.id}/`} class="post-nav-link">
+									<span class="post-nav-label">→ Older</span>
+									<span class="post-nav-title">
+										{olderPost.data.title}
+									</span>
+								</a>
+							)}
+						</div>
+					</nav>
+				)
+			}
 		</main>
 		<Footer />
 
@@ -52,6 +89,57 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 			}
 			.updated {
 				font-style: italic;
+			}
+			.post-nav {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1.5rem;
+				margin-top: 4rem;
+				padding-top: 2rem;
+				border-top: 1px solid var(--rule);
+			}
+			.post-nav-cell {
+				min-width: 0;
+			}
+			.post-nav-cell-right {
+				text-align: right;
+			}
+			.post-nav-link {
+				display: inline-flex;
+				flex-direction: column;
+				gap: 0.25rem;
+				text-decoration: none;
+				color: var(--ink);
+				max-width: 100%;
+			}
+			.post-nav-label {
+				font-size: 0.75rem;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				color: var(--ink-muted);
+			}
+			.post-nav-title {
+				font-size: 0.95rem;
+				line-height: 1.4;
+				color: var(--ink);
+				text-decoration: underline;
+				text-decoration-thickness: 1px;
+				text-underline-offset: 3px;
+				text-decoration-color: var(--rule);
+			}
+			.post-nav-link:hover .post-nav-title {
+				text-decoration-color: var(--ink);
+				text-decoration-thickness: 2px;
+			}
+			@media (max-width: 540px) {
+				.post-nav {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+				}
+				.post-nav-cell-right {
+					text-align: left;
+				}
 			}
 		</style>
 	</body>
