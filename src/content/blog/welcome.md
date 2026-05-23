@@ -1,25 +1,19 @@
 ---
-title: 'Welcome'
-description: 'A short note on what this is and why I am writing it.'
+title: Welcome
+description: A short note on what this is and why I am writing it.
 pubDate: 2026-05-03
-draft: true
+draft: false
 ---
+I have been close to and far from the Ashtanga primary series for thirty years and never finished it. I am someone who consistently keeps starting at the beginning and I don't get to where I intended to go.
 
-I have been close to and far from the Ashtanga primary series for thirty years
-and have never finished it. That fact, embarrassingly, is the truest thing I
-can say about myself: I am someone who keeps starting at the beginning.
+This site is about starting once again, but this time getting to a sense of mastery, which I think is the intended destination. To see what is there. 
 
-This site is the writing version of starting again. The point is to think out
-loud about the capabilities most adults assume they will have figured out by
-some unnamed age and rarely do — shipping work, staying healthy, building
-prosperity, mastering the self — and to do so without naming anyone, including
-me. The frame I trust most for that work is yogic philosophy. The "primary" in
-the title is the primary series. The series I have not finished.
+In doing this I will share out loud, so that if the journey is of value, we can do it again but better and maybe faster.
 
-I will not be writing about clients. I will not be writing about coworkers. I
-will not be writing about the day-to-day of any engagement. What is left is
-the actual question, which is more than enough.
+I will tackling mastering the capabilities most adults assume they will have figured out by some  age but rarely do — shipping good work with intention, being healthy, building prosperity, finding good friends, and mastering self. 
 
-Some of what shows up here will be notes from the practice. Some will be
-thinking out loud about the software I am building toward the same end. The
-two halves will, I hope, end up being the same thing.
+I will do this without naming anyone, including me. 
+
+To master in a meaningful way, which is to change and not just do, I require a playbook. I'm convinced that the most practical, comprehensive, and time tested playbook is yoga. You will therefore see it  embedded in my writing - let's see how it works! 
+
+I also will take on completing primary series, the one I never finsished after thousands of hours of practice, as the initial proving ground.
