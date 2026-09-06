@@ -6,7 +6,13 @@ const blog = defineCollection({
 	loader: glob({
 		base: './src/content/blog',
 		pattern: '**/*.{md,mdx}',
-		ignore: ['_drafts/**', '**/_drafts/**'],
+		// Never build the private Jarvis vault if it's ever re-synced onto disk
+		// here (Brain/ holds the confidential equity campaign). These dirs are
+		// also gitignored; this stops the Astro build/publish path too.
+		ignore: [
+			'_drafts/**', '**/_drafts/**',
+			'Brain/**', 'knowledge/**', 'sources/**', 'prompts/**', 'build/**',
+		],
 	}),
 	schema: z.object({
 		title: z.string(),
