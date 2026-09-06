@@ -26,3 +26,13 @@ pnpm-debug.log*
 
 # Obsidian vault metadata (when blog folder is opened as a vault)
 .obsidian/
+
+# Coaching-vault files must not leak into the public blog content (see ~/Jarvis).
+# Blog posts only under src/content/blog — no advisor/coaching/knowledge material.
+src/content/blog/ADVISOR.md
+src/content/blog/Jarvis-Coach-Portable.md
+src/content/blog/CLAUDE.md
+src/content/blog/knowledge/
+src/content/blog/prompts/
+src/content/blog/sources/
+src/content/blog/build/
